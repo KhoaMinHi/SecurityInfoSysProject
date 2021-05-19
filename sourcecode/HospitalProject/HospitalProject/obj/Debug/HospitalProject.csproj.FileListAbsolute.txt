@@ -1,0 +1,17 @@
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\HospitalProject.exe.config
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\HospitalProject.exe
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\HospitalProject.pdb
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.csprojAssemblyReference.cache
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.admin.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.loginAdmin.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.Properties.Resources.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.csproj.GenerateResource.cache
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.csproj.CoreCompileInputs.cache
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.csproj.CopyComplete
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.exe
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.pdb
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Microsoft.SqlServer.IntegrationServices.ODataConnectionManager.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Microsoft.SqlServer.IntegrationServices.ODataSrc.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.VsDevTools.EntityFramework.16.0.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.DataAccess.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.Web.dll

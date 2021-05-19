@@ -1,0 +1,6 @@
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.csprojAssemblyReference.cache
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.admin.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.loginAdmin.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.Properties.Resources.resources
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.csproj.GenerateResource.cache
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\x86\Debug\HospitalProject.csproj.CoreCompileInputs.cache
