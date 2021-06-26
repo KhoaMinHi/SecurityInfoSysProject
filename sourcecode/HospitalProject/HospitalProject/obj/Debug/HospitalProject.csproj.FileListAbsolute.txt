@@ -15,3 +15,5 @@ D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\Ho
 D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.VsDevTools.EntityFramework.16.0.dll
 D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.DataAccess.dll
 D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.Web.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\HK-VI_Khoahoc\AnToan-Va-BaoMat-HTTT\DoAn\SecurityInfoSysProject\sourcecode\HospitalProject\HospitalProject\obj\Debug\HospitalProject.fBacSi.resources

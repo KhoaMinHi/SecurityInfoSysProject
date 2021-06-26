@@ -42,38 +42,39 @@ namespace HospitalProject
         //### Tạo user ###\\
         private void buttonCreateUser_Click(object sender, EventArgs e)
         {
-            var yesno = MessageBox.Show("Bạn có muốn tạo người dùng " + textBoxUserName.Text + "?", "Tạo người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var yesno = MessageBox.Show("Bạn có muốn tạo người dùng " + comboBoxUserName.Text + "?", "Tạo người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(yesno == DialogResult.No)
             {
                 return;
             }
 
             string query = "CDUUSERORROLE CDU obj objectname pass";
-            object[] parameter = { "create", "user", textBoxUserName.Text, textBoxUserPassWord.Text };
+            object[] parameter = { "create", "user", comboBoxUserName.Text, textBoxUserPassWord.Text };
             DataProvider.Instance.ExecuteParameterNonQuery(query, "procedure", parameter);
+
         }
 
         private void buttonDropUser_Click(object sender, EventArgs e)
         {
-            var yesno = MessageBox.Show("Bạn có muốn xóa người dùng " + textBoxUserName.Text + "?", "Xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var yesno = MessageBox.Show("Bạn có muốn xóa người dùng " + comboBoxUserName.Text + "?", "Xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (yesno == DialogResult.No)
             {
                 return;
             }
             string query = "CDUUSERORROLE CDU obj objectname pass";
-            object[] parameter = { "delete", "user", textBoxUserName.Text, textBoxUserPassWord.Text };
+            object[] parameter = { "delete", "user", comboBoxUserName.Text, textBoxUserPassWord.Text };
             DataProvider.Instance.ExecuteParameterNonQuery(query, "procedure", parameter);
         }
 
         private void buttonAlterUser_Click(object sender, EventArgs e)
         {
-            var yesno = MessageBox.Show("Bạn có muốn đổi mật khẩu người dùng " + textBoxUserName.Text + "?", "Sửa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var yesno = MessageBox.Show("Bạn có muốn đổi mật khẩu người dùng " + comboBoxUserName.Text + "?", "Sửa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (yesno == DialogResult.No)
             {
                 return;
             }
             string query = "CDUUSERORROLE CDU obj objectname pass";
-            object[] parameter = { "update", "user", textBoxUserName.Text, textBoxUserPassWord.Text };
+            object[] parameter = { "update", "user", comboBoxUserName.Text, textBoxUserPassWord.Text };
             DataProvider.Instance.ExecuteParameterNonQuery(query, "procedure", parameter);
         }
 
@@ -187,6 +188,51 @@ namespace HospitalProject
 
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dataGridViewRole.DataSource = data;
+        }
+
+        private void buttonShowAudited_Click(object sender, EventArgs e)
+        {
+            if(comboBoxAuditedActivity.Text == "logon-logff")
+            {
+                string query = "select audit_type, session_id, db_user, os_user, statement_type, " +
+                    "extended_timestamp as" + "\"thuc hien luc\"" + " from dba_common_audit_trail;";  //\" get "
+
+                DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+                dataGridViewAudit.DataSource = data;
+            }
+            else if(comboBoxAuditedActivity.Text == "tieptan-xoasua-hosobenhnhan")
+            {
+                string query = "select audit_type, db_user, os_user, object_schema, object_name, statement_type," +
+                    "sql_text, extended_timestamp from dba_common_audit_trail " +
+                    " where statement_type = 'UPDATE' OR statement_type = 'DELETE'";
+
+                DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+                dataGridViewAudit.DataSource = data;
+            }
+            else if(comboBoxAuditedActivity.Text == "nhanvientaivu-capnhat-tienluong")
+            {
+                string query = "select db_user, os_user, object_schema, policy_name, sql_text, statement_type, " +
+                    "extended_timestamp from dba_fga_audit_trail;";
+
+                DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+                dataGridViewAudit.DataSource = data;
+            }
+
+               
+        }
+
+        private void comboBoxUserPositions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonShowKeyEncrypted_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT K.MAKB, k.keystring, h.makb, h.ketluanbs, F_MYDECRYPTION(h.ketluanbs, k.keystring) " +
+                "FROM BV_SCHEMA.hosobenhnhankeytable K JOIN  BV_SCHEMA.HOSOKB H ON K.MAKB = H.MAKB";
+
+            DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+            dataGridViewShowKeyEncrypted.DataSource = data;
         }
     }
 }

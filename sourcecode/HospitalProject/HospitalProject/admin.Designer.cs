@@ -64,6 +64,7 @@ namespace HospitalProject
             this.tabPageUser = new System.Windows.Forms.TabPage();
             this.buttonShowRecentUserPriv = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.comboBoxUserName = new System.Windows.Forms.ComboBox();
             this.textBoxUserPassWord = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@ namespace HospitalProject
             this.buttonCreateUser = new System.Windows.Forms.Button();
             this.buttonAlterUser = new System.Windows.Forms.Button();
             this.buttonDropUser = new System.Windows.Forms.Button();
-            this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBoxGrantUserAdminOption = new System.Windows.Forms.ComboBox();
@@ -95,6 +95,19 @@ namespace HospitalProject
             this.dtgvShowAllUser = new System.Windows.Forms.DataGridView();
             this.tabControlAdmin = new System.Windows.Forms.TabControl();
             this.tabPageAudit = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.buttonShowAudited = new System.Windows.Forms.Button();
+            this.comboBoxAuditedActivity = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.dataGridViewAudit = new System.Windows.Forms.DataGridView();
+            this.tabPageTable = new System.Windows.Forms.TabPage();
+            this.tabPageCryptography = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.buttonShowKeyEncrypted = new System.Windows.Forms.Button();
+            this.dataGridViewShowKeyEncrypted = new System.Windows.Forms.DataGridView();
             this.toolTipRevokeUser = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAlterUserPrivButton = new System.Windows.Forms.ToolTip(this.components);
             this.tabPageRole.SuspendLayout();
@@ -110,6 +123,11 @@ namespace HospitalProject
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowAllUser)).BeginInit();
             this.tabControlAdmin.SuspendLayout();
+            this.tabPageAudit.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAudit)).BeginInit();
+            this.tabPageCryptography.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowKeyEncrypted)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageRole
@@ -121,7 +139,7 @@ namespace HospitalProject
             this.tabPageRole.Location = new System.Drawing.Point(4, 25);
             this.tabPageRole.Name = "tabPageRole";
             this.tabPageRole.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRole.Size = new System.Drawing.Size(1021, 563);
+            this.tabPageRole.Size = new System.Drawing.Size(1011, 563);
             this.tabPageRole.TabIndex = 1;
             this.tabPageRole.Text = "Vai trò";
             this.tabPageRole.UseVisualStyleBackColor = true;
@@ -436,7 +454,7 @@ namespace HospitalProject
             this.tabPageUser.Location = new System.Drawing.Point(4, 25);
             this.tabPageUser.Name = "tabPageUser";
             this.tabPageUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUser.Size = new System.Drawing.Size(1021, 563);
+            this.tabPageUser.Size = new System.Drawing.Size(1011, 563);
             this.tabPageUser.TabIndex = 0;
             this.tabPageUser.Text = "Người dùng";
             this.tabPageUser.UseVisualStyleBackColor = true;
@@ -454,17 +472,25 @@ namespace HospitalProject
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.comboBoxUserName);
             this.panel4.Controls.Add(this.textBoxUserPassWord);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.textBoxUserName);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Location = new System.Drawing.Point(661, 83);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(338, 166);
+            this.panel4.Size = new System.Drawing.Size(338, 176);
             this.panel4.TabIndex = 5;
+            // 
+            // comboBoxUserName
+            // 
+            this.comboBoxUserName.FormattingEnabled = true;
+            this.comboBoxUserName.Location = new System.Drawing.Point(84, 28);
+            this.comboBoxUserName.Name = "comboBoxUserName";
+            this.comboBoxUserName.Size = new System.Drawing.Size(237, 24);
+            this.comboBoxUserName.TabIndex = 10;
             // 
             // textBoxUserPassWord
             // 
@@ -504,7 +530,7 @@ namespace HospitalProject
             this.panel5.Controls.Add(this.buttonCreateUser);
             this.panel5.Controls.Add(this.buttonAlterUser);
             this.panel5.Controls.Add(this.buttonDropUser);
-            this.panel5.Location = new System.Drawing.Point(84, 99);
+            this.panel5.Location = new System.Drawing.Point(84, 101);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(237, 54);
             this.panel5.TabIndex = 6;
@@ -541,13 +567,6 @@ namespace HospitalProject
             this.buttonDropUser.Text = "Xóa";
             this.buttonDropUser.UseVisualStyleBackColor = true;
             this.buttonDropUser.Click += new System.EventHandler(this.buttonDropUser_Click);
-            // 
-            // textBoxUserName
-            // 
-            this.textBoxUserName.Location = new System.Drawing.Point(84, 30);
-            this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(237, 22);
-            this.textBoxUserName.TabIndex = 4;
             // 
             // label9
             // 
@@ -757,21 +776,157 @@ namespace HospitalProject
             this.tabControlAdmin.Controls.Add(this.tabPageUser);
             this.tabControlAdmin.Controls.Add(this.tabPageRole);
             this.tabControlAdmin.Controls.Add(this.tabPageAudit);
+            this.tabControlAdmin.Controls.Add(this.tabPageTable);
+            this.tabControlAdmin.Controls.Add(this.tabPageCryptography);
             this.tabControlAdmin.Location = new System.Drawing.Point(2, 3);
             this.tabControlAdmin.Name = "tabControlAdmin";
             this.tabControlAdmin.SelectedIndex = 0;
-            this.tabControlAdmin.Size = new System.Drawing.Size(1029, 592);
+            this.tabControlAdmin.Size = new System.Drawing.Size(1019, 592);
             this.tabControlAdmin.TabIndex = 3;
             // 
             // tabPageAudit
             // 
+            this.tabPageAudit.Controls.Add(this.panel9);
+            this.tabPageAudit.Controls.Add(this.dataGridViewAudit);
             this.tabPageAudit.Location = new System.Drawing.Point(4, 25);
             this.tabPageAudit.Name = "tabPageAudit";
             this.tabPageAudit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAudit.Size = new System.Drawing.Size(1021, 563);
+            this.tabPageAudit.Size = new System.Drawing.Size(1011, 563);
             this.tabPageAudit.TabIndex = 2;
             this.tabPageAudit.Text = "Nhật ký giám sát";
             this.tabPageAudit.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.buttonShowAudited);
+            this.panel9.Controls.Add(this.comboBoxAuditedActivity);
+            this.panel9.Controls.Add(this.label23);
+            this.panel9.Controls.Add(this.label24);
+            this.panel9.Controls.Add(this.label26);
+            this.panel9.Controls.Add(this.label27);
+            this.panel9.Location = new System.Drawing.Point(663, 6);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(352, 121);
+            this.panel9.TabIndex = 13;
+            // 
+            // buttonShowAudited
+            // 
+            this.buttonShowAudited.Location = new System.Drawing.Point(268, 65);
+            this.buttonShowAudited.Name = "buttonShowAudited";
+            this.buttonShowAudited.Size = new System.Drawing.Size(75, 36);
+            this.buttonShowAudited.TabIndex = 6;
+            this.buttonShowAudited.TabStop = false;
+            this.buttonShowAudited.Text = "Xem";
+            this.buttonShowAudited.UseVisualStyleBackColor = true;
+            this.buttonShowAudited.Click += new System.EventHandler(this.buttonShowAudited_Click);
+            // 
+            // comboBoxAuditedActivity
+            // 
+            this.comboBoxAuditedActivity.FormattingEnabled = true;
+            this.comboBoxAuditedActivity.Items.AddRange(new object[] {
+            "logon-logff",
+            "tieptan-xoasua-hosobenhnhan",
+            "nhanvientaivu-capnhat-tienluong"});
+            this.comboBoxAuditedActivity.Location = new System.Drawing.Point(91, 35);
+            this.comboBoxAuditedActivity.Name = "comboBoxAuditedActivity";
+            this.comboBoxAuditedActivity.Size = new System.Drawing.Size(258, 24);
+            this.comboBoxAuditedActivity.TabIndex = 14;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 3);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(96, 17);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "TẠO VAI TRÒ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(3, 125);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(0, 17);
+            this.label24.TabIndex = 8;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(3, 38);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(78, 17);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "Hoạt động:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(3, 15);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(0, 17);
+            this.label27.TabIndex = 0;
+            // 
+            // dataGridViewAudit
+            // 
+            this.dataGridViewAudit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAudit.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewAudit.Name = "dataGridViewAudit";
+            this.dataGridViewAudit.RowHeadersWidth = 51;
+            this.dataGridViewAudit.RowTemplate.Height = 24;
+            this.dataGridViewAudit.Size = new System.Drawing.Size(654, 554);
+            this.dataGridViewAudit.TabIndex = 0;
+            // 
+            // tabPageTable
+            // 
+            this.tabPageTable.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTable.Name = "tabPageTable";
+            this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTable.Size = new System.Drawing.Size(1011, 563);
+            this.tabPageTable.TabIndex = 3;
+            this.tabPageTable.Text = "Bảng";
+            this.tabPageTable.UseVisualStyleBackColor = true;
+            // 
+            // tabPageCryptography
+            // 
+            this.tabPageCryptography.Controls.Add(this.label22);
+            this.tabPageCryptography.Controls.Add(this.buttonShowKeyEncrypted);
+            this.tabPageCryptography.Controls.Add(this.dataGridViewShowKeyEncrypted);
+            this.tabPageCryptography.Location = new System.Drawing.Point(4, 25);
+            this.tabPageCryptography.Name = "tabPageCryptography";
+            this.tabPageCryptography.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCryptography.Size = new System.Drawing.Size(1011, 563);
+            this.tabPageCryptography.TabIndex = 4;
+            this.tabPageCryptography.Text = "Mã hóa";
+            this.tabPageCryptography.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(772, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(152, 17);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Xem key được mã hóa:";
+            // 
+            // buttonShowKeyEncrypted
+            // 
+            this.buttonShowKeyEncrypted.Location = new System.Drawing.Point(930, 6);
+            this.buttonShowKeyEncrypted.Name = "buttonShowKeyEncrypted";
+            this.buttonShowKeyEncrypted.Size = new System.Drawing.Size(75, 37);
+            this.buttonShowKeyEncrypted.TabIndex = 1;
+            this.buttonShowKeyEncrypted.Text = "Xem";
+            this.buttonShowKeyEncrypted.UseVisualStyleBackColor = true;
+            this.buttonShowKeyEncrypted.Click += new System.EventHandler(this.buttonShowKeyEncrypted_Click);
+            // 
+            // dataGridViewShowKeyEncrypted
+            // 
+            this.dataGridViewShowKeyEncrypted.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewShowKeyEncrypted.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewShowKeyEncrypted.Name = "dataGridViewShowKeyEncrypted";
+            this.dataGridViewShowKeyEncrypted.RowHeadersWidth = 51;
+            this.dataGridViewShowKeyEncrypted.RowTemplate.Height = 24;
+            this.dataGridViewShowKeyEncrypted.Size = new System.Drawing.Size(640, 266);
+            this.dataGridViewShowKeyEncrypted.TabIndex = 0;
             // 
             // toolTipRevokeUser
             // 
@@ -793,7 +948,7 @@ namespace HospitalProject
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 615);
+            this.ClientSize = new System.Drawing.Size(1030, 615);
             this.Controls.Add(this.tabControlAdmin);
             this.Name = "admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -815,6 +970,13 @@ namespace HospitalProject
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowAllUser)).EndInit();
             this.tabControlAdmin.ResumeLayout(false);
+            this.tabPageAudit.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAudit)).EndInit();
+            this.tabPageCryptography.ResumeLayout(false);
+            this.tabPageCryptography.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowKeyEncrypted)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -850,7 +1012,6 @@ namespace HospitalProject
         private System.Windows.Forms.Button buttonCreateUser;
         private System.Windows.Forms.Button buttonAlterUser;
         private System.Windows.Forms.Button buttonDropUser;
-        private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
@@ -888,5 +1049,19 @@ namespace HospitalProject
         private System.Windows.Forms.TextBox textBoxGrantRoleColumn;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TabPage tabPageTable;
+        private System.Windows.Forms.TabPage tabPageCryptography;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ComboBox comboBoxAuditedActivity;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button buttonShowAudited;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DataGridView dataGridViewAudit;
+        private System.Windows.Forms.ComboBox comboBoxUserName;
+        private System.Windows.Forms.Button buttonShowKeyEncrypted;
+        private System.Windows.Forms.DataGridView dataGridViewShowKeyEncrypted;
+        private System.Windows.Forms.Label label22;
     }
 }

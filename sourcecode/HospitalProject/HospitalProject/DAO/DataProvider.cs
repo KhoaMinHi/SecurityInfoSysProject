@@ -13,14 +13,16 @@ namespace HospitalProject.DAO
     public class DataProvider
     {
         private static DataProvider instance;
-        private static string connStr = @"DATA SOURCE=localhost:1521/";// User Id = c##bv_schema;Password=bv_schema";
-        public static string ConnStr { get => connStr; set => connStr = value; }
-
-        public static DataProvider Instance
+        public static DataProvider Instance //crtl r e
         {
             get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
             private set { DataProvider.instance = value; }
         }
+
+        private static string connStr = "";// User Id = c##bv_schema;Password=bv_schema";
+        public static string ConnStr { get => connStr; set => connStr = value; }
+
+        
 
         //type la loai doi tuong thuc thi: procedure, function, ..
         public DataTable ExecuteParameterQuery(string query, string type = null,object[] parameter = null) //Truy van du lieu tu data base, khong can chu y dau ',' hay @, hay khoang trang
@@ -115,6 +117,61 @@ namespace HospitalProject.DAO
 
 
                     data = command.ExecuteNonQuery();
+
+                    connection.Close();
+
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message); //Them using System.Windows.Forms;
+            }
+
+            return data;
+        }
+
+
+        public object ExecuteScalar(string query, string type = null, object[] parameter = null)
+        {
+            object data = 0;
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(ConnStr))
+                {
+
+                    connection.Open();
+
+                    OracleCommand command = new OracleCommand();
+                    command.Connection = connection;
+
+                    if (type != null && type == "procedure")
+                    {
+                        command.CommandText = query.Split(' ')[0];
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        if (parameter != null)
+                        {
+                            string[] listPara = query.Split(' ');
+                            int i = 0;
+                            foreach (string item in listPara)
+                            {
+                                if (i != 0)
+                                {
+                                    command.Parameters.Add(item, parameter[i - 1]);
+
+                                }
+                                i++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        command.CommandText = query;
+                    }
+
+
+                    data = command.ExecuteScalar();
 
                     connection.Close();
 

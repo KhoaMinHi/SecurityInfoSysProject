@@ -1,7 +1,7 @@
 --Đề trong dấu nháy thì phải viết đúng hoa, thường.
 
 
---Tạo một schema chứa các bảng.
+--Tạo một schema chứa các bảng. COMMON USER KHÔNG LIÊN HÊ VỚI PLUGGABLE DATABASE ĐƯỢC, VÍ DỤ NHƯ KHÔNG PHÂN QUYỀN ĐẾN PLUGGABLE ĐƯỢC
 create user c##bv_schema identified by bv_schema;
 grant create session to C##bv_schema; --de login duoc
 grant create table to c##bv_schema;
@@ -9,6 +9,11 @@ grant unlimited tablespace to c##bv_schema; --cap vung nho cho user(de insert du
 --Tao mot user quan tri
 create user c##admin_bv identified by admin_bv;
 grant create session to C##admin_bv;
+
+CREATE USER bv_schema identified by bv_schema;
+grant create session to bv_schema;
+grant create table to bv_schema;
+grant unlimited tablespace to bv_schema;
 
 --xem danh sach nguoi dung trong he thong
 select username from all_users;
@@ -106,3 +111,31 @@ select dr.grantee, dr.granted_role, rs.privilege as sysprivs, rs.admin_option,
 from dba_role_privs dr join role_sys_privs rs on dr.granted_role = rs.role
     join role_tab_privs rt on rt.role = dr.granted_role
 where dr.grantee = 'SYS';
+
+--tao role
+
+
+--===================Xu ly phan nguoi dung==============================--
+--Them thong tin nguoi dung
+create or replace procedure p_insert_thongtinnhanvien
+    (MADVI in NUMBER, TENNV in NVARCHAR2 := NULL, VAITRO in NVARCHAR2 := NULL, LUONG in NUMBER := NULL)
+is 
+    get_manv number(38, 0);
+begin
+    select (max(manv)+1) into get_manv from bv_schema.nhanvien;
+    insert into bv_schema.nhanvien(MANV, MADVI, TENNV, VAITRO, LUONG) 
+        values(get_manv, MADVI, TENNV, VAITRO, LUONG);
+    commit;
+end;
+
+begin 
+    p_insert_thongtinnhanvien(1, 'huong', 'ke toan', 12);
+end;
+
+select * from dual;
+select * from bv_schema.nhanvien where tennv = 'HƯNG';
+select password from dba_users  where username = 'THUONG' and password = null;
+SELECT SYS_CONTEXT ('USERENV', 'SESSION_USER') 
+   FROM DUAL;
+   
+select value from v$parameter where name='service_names'

@@ -60,10 +60,19 @@
     <Reference Include="Microsoft.SqlServer.IntegrationServices.ODataConnectionManager, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.IntegrationServices.ODataSrc, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>c:\program files (x86)\microsoft visual studio\2019\community\common7\ide\extensions\mb1caqb4.zzj\Assemblies\DataProviders\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.VsDevTools.EntityFramework.16.0, Version=6.122.19.32, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="Oracle.Web, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -82,6 +91,59 @@
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="fBacSi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fBacSi.Designer.cs">
+      <DependentUpon>fBacSi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fBophanBanThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fBophanBanThuoc.Designer.cs">
+      <DependentUpon>fBophanBanThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fKetoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fKetoan.Designer.cs">
+      <DependentUpon>fKetoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fQuanlyChuyenmon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fQuanlyChuyenmon.Designer.cs">
+      <DependentUpon>fQuanlyChuyenmon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fQuanlyTainguyenNhansu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fQuanlyTainguyenNhansu.Designer.cs">
+      <DependentUpon>fQuanlyTainguyenNhansu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fQuanlyTaivu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fQuanlyTaivu.Designer.cs">
+      <DependentUpon>fQuanlyTaivu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fTaivu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTaivu.Designer.cs">
+      <DependentUpon>fTaivu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fTieptanDieuphoiBenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTieptanDieuphoiBenh.Designer.cs">
+      <DependentUpon>fTieptanDieuphoiBenh.cs</DependentUpon>
+    </Compile>
     <Compile Include="loginAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +154,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fBacSi.resx">
+      <DependentUpon>fBacSi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="loginAdmin.resx">
       <DependentUpon>loginAdmin.cs</DependentUpon>
@@ -105,6 +170,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

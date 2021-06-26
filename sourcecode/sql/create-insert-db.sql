@@ -243,6 +243,7 @@ into DONVI(MADVI) values (1)
 into DONVI(MADVI) values (2)
 select * from dual;
 
+
 --nhap thuoc
 insert all
 into THUOC(MATHUOC, TENTHUOC) values(1,'thuốc giảm đau')
@@ -266,10 +267,10 @@ select 1 from dual;
 
 --thong tin nhan vi�n
 insert all
-into NHANVIEN(MANV, MADVI, TENNV)values(1,1,'Hưng')
-into NHANVIEN(MANV, MADVI, TENNV)values(2,2,'Thành')
-into NHANVIEN(MANV, MADVI, TENNV)values(3,1,'Mẫn')
-into NHANVIEN(MANV, MADVI, TENNV)values(4,2,'Sang')
+into NHANVIEN(MANV, MADVI, TENNV)values(1,1,'HUNG')
+into NHANVIEN(MANV, MADVI, TENNV)values(2,2,'THANH')
+into NHANVIEN(MANV, MADVI, TENNV)values(3,1,'MAN')
+into NHANVIEN(MANV, MADVI, TENNV)values(4,2,'SANG')
 select 1 from dual;
 
 --th�ng tin chi ti?t tr?c c�ng
@@ -382,3 +383,102 @@ into SUDUNG(MAKB,MADVU,MANV)values (8,8,4)
 into SUDUNG(MAKB,MADVU,MANV)values (9,9,1)
 into SUDUNG(MAKB,MADVU,MANV)values (10,10,2)
 select dummy from dual;
+
+--============================================
+--insert more data
+
+update DONVI
+    SET tendvi = 'Ho Chi Minh'
+    where madvi=2;
+update DONVI
+    SET tendvi = 'Quang Ngai'
+    where madvi=1;
+    
+---Nhan vien
+update nhanvien
+    SET vaitro = 'bac si',
+        luong = 20000000
+    where manv=1;
+update nhanvien
+    SET vaitro = 'bac si',
+    luong = 20000000
+    where manv=2;
+update nhanvien
+    SET vaitro = 'quan ly tai nguyen va nhan su',
+    luong = 10000000
+    where manv=3;
+update nhanvien
+    SET vaitro = 'quan ly tai vu',
+    luong = 10000000
+    where manv=4;
+    
+insert all
+into NHANVIEN(MANV, MADVI, TENNV, VAITRO, LUONG)values(5,1,'VUONG', 'quan ly chuyen mon', 10000000)
+into NHANVIEN(MANV, MADVI, TENNV, VAITRO, LUONG)values(6,2,'TRUC', 'tiep tan va dieu phoi benh', 10000000)
+into NHANVIEN(MANV, MADVI, TENNV, VAITRO, LUONG)values(7,1,'THUONG', 'tai vu', 1000000)
+into NHANVIEN(MANV, MADVI, TENNV, VAITRO, LUONG)values(8,2,'AN', 'bo phan ban thuoc', 1000000)
+into NHANVIEN(MANV, MADVI, TENNV, VAITRO, LUONG)values(9,2,'TOAN', 'ke toan', 1000000)
+select 1 from dual;
+
+ALTER TABLE hoadon 
+    ADD tongtien numeric;
+
+
+commit;
+
+
+
+--==========================================
+--lúc logon nhớ vẫn giữ dấu nháy kép mới logon được.
+create user HUNG identified by HUNG;
+create user THANH identified by THANH;
+create user MAN identified by MAN;
+create user SANG identified by SANG;
+create user VUONG identified by VUONG;
+create user TRUC identified by TRUC;
+create user THUONG identified by THUONG;
+create user AN identified by AN;
+create user TOAN identified by TOAN;
+
+grant create session to HUNG;
+grant create session to MAN;
+grant create session to SANG;
+grant create session to VUONG;
+grant create session to TRUC;
+grant create session to THUONG;
+grant create session to AN;
+grant create session to TOAN;
+
+/*
+drop user HUNG;
+drop user THANH;
+drop user MAN;
+drop user SANG;
+drop user VUONG;
+drop user TRUC;
+drop user THUONG;
+drop user AN;
+drop user TOAN;*/
+
+
+update hosokb
+    set ketluanbs = 'bệnh tâm thần',
+        trieuchung = 'đâu đầu, không kiềm chế được hành vi'
+    where makb = 1;
+    
+update hosokb
+    set ketluanbs = 'bệnh ngứa lâu năm',
+        trieuchung = 'trái gió trở trời hay nổi mẫn gây khó chiệu'
+    where makb = 2;
+    
+update hosokb
+    set ketluanbs = 'bệnh cận thị',
+        trieuchung = 'hay mỏi mắt, lâu lâu tự dưng nhìn thấy nhòa nhòa'
+    where makb = 3;
+
+update hosokb
+    set ketluanbs = 'bệnh cận thị',
+        trieuchung = 'hay mỏi mắt, lâu lâu tự dưng nhìn thấy nhòa nhòa'
+    where makb = 10;
+commit;
+update bv_schema.hosokb set ketluanbs = 'KHÔNG BỊ GÌ CẢ' where makb = 6;

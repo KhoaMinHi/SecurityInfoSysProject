@@ -35,16 +35,16 @@ namespace HospitalProject
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.comboBoxServiceName = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxServiceName = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txbPassword
@@ -113,6 +113,40 @@ namespace HospitalProject
             this.panel1.TabIndex = 1;
             this.panel1.UseWaitCursor = true;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.comboBoxServiceName);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Location = new System.Drawing.Point(3, 87);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(394, 36);
+            this.panel4.TabIndex = 5;
+            this.panel4.UseWaitCursor = true;
+            // 
+            // comboBoxServiceName
+            // 
+            this.comboBoxServiceName.FormattingEnabled = true;
+            this.comboBoxServiceName.Items.AddRange(new object[] {
+            "pdb",
+            "orcl1",
+            "benhvien"});
+            this.comboBoxServiceName.Location = new System.Drawing.Point(129, 4);
+            this.comboBoxServiceName.Name = "comboBoxServiceName";
+            this.comboBoxServiceName.Size = new System.Drawing.Size(254, 24);
+            this.comboBoxServiceName.TabIndex = 6;
+            this.comboBoxServiceName.Text = "pdb";
+            this.comboBoxServiceName.UseWaitCursor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Tên Service:";
+            this.label3.UseWaitCursor = true;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.txbUserName);
@@ -129,7 +163,7 @@ namespace HospitalProject
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(254, 22);
             this.txbUserName.TabIndex = 1;
-            this.txbUserName.Text = "sys";
+            this.txbUserName.Text = "SYS";
             this.txbUserName.UseWaitCursor = true;
             // 
             // label1
@@ -141,39 +175,6 @@ namespace HospitalProject
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên đăng nhập";
             this.label1.UseWaitCursor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.comboBoxServiceName);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Location = new System.Drawing.Point(3, 87);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(394, 36);
-            this.panel4.TabIndex = 5;
-            this.panel4.UseWaitCursor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Tên Service:";
-            this.label3.UseWaitCursor = true;
-            // 
-            // comboBoxServiceName
-            // 
-            this.comboBoxServiceName.FormattingEnabled = true;
-            this.comboBoxServiceName.Items.AddRange(new object[] {
-            "orcl1",
-            "pdb",
-            "benhvien"});
-            this.comboBoxServiceName.Location = new System.Drawing.Point(129, 4);
-            this.comboBoxServiceName.Name = "comboBoxServiceName";
-            this.comboBoxServiceName.Size = new System.Drawing.Size(254, 24);
-            this.comboBoxServiceName.TabIndex = 6;
-            this.comboBoxServiceName.Text = "orcl1";
             // 
             // loginAdmin
             // 
@@ -190,10 +191,10 @@ namespace HospitalProject
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
