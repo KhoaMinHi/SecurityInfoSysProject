@@ -75,12 +75,12 @@ namespace HospitalProject
             this.buttonDropUser = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBoxGrantUserObject = new System.Windows.Forms.ComboBox();
             this.comboBoxGrantUserAdminOption = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxGrantUserPriv = new System.Windows.Forms.ComboBox();
             this.textBoxGrantUserGrantee = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxGrantUserObject = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -110,6 +110,8 @@ namespace HospitalProject
             this.dataGridViewShowKeyEncrypted = new System.Windows.Forms.DataGridView();
             this.toolTipRevokeUser = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAlterUserPrivButton = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipCheckRecentPrevilege = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonShowListRole = new System.Windows.Forms.Button();
             this.tabPageRole.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -132,6 +134,7 @@ namespace HospitalProject
             // 
             // tabPageRole
             // 
+            this.tabPageRole.Controls.Add(this.buttonShowListRole);
             this.tabPageRole.Controls.Add(this.panel7);
             this.tabPageRole.Controls.Add(this.buttonShowRecentRolePriv);
             this.tabPageRole.Controls.Add(this.panel1);
@@ -190,7 +193,10 @@ namespace HospitalProject
             "select",
             "update",
             "insert",
-            "delete"});
+            "delete",
+            "INSERT, UPDATE",
+            "SELECT, UPDATE",
+            "CREATE SESSION"});
             this.comboBoxGrantRolePriv.Location = new System.Drawing.Point(84, 31);
             this.comboBoxGrantRolePriv.Name = "comboBoxGrantRolePriv";
             this.comboBoxGrantRolePriv.Size = new System.Drawing.Size(237, 24);
@@ -224,9 +230,9 @@ namespace HospitalProject
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(3, 148);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 17);
+            this.label18.Size = new System.Drawing.Size(37, 17);
             this.label18.TabIndex = 8;
-            this.label18.Text = "Cho ai:";
+            this.label18.Text = "Cho:";
             // 
             // label19
             // 
@@ -467,6 +473,7 @@ namespace HospitalProject
             this.buttonShowRecentUserPriv.TabIndex = 14;
             this.buttonShowRecentUserPriv.TabStop = false;
             this.buttonShowRecentUserPriv.Text = "Xem quyền mới tạo";
+            this.toolTipCheckRecentPrevilege.SetToolTip(this.buttonShowRecentUserPriv, "Nhập tên vào cột cho ai để check!");
             this.buttonShowRecentUserPriv.UseVisualStyleBackColor = true;
             this.buttonShowRecentUserPriv.Click += new System.EventHandler(this.buttonShowRecentUserPriv_Click);
             // 
@@ -579,12 +586,12 @@ namespace HospitalProject
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.comboBoxGrantUserObject);
             this.panel2.Controls.Add(this.comboBoxGrantUserAdminOption);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.comboBoxGrantUserPriv);
             this.panel2.Controls.Add(this.textBoxGrantUserGrantee);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.textBoxGrantUserObject);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.panel3);
@@ -595,6 +602,16 @@ namespace HospitalProject
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(338, 275);
             this.panel2.TabIndex = 4;
+            // 
+            // comboBoxGrantUserObject
+            // 
+            this.comboBoxGrantUserObject.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxGrantUserObject.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxGrantUserObject.FormattingEnabled = true;
+            this.comboBoxGrantUserObject.Location = new System.Drawing.Point(84, 67);
+            this.comboBoxGrantUserObject.Name = "comboBoxGrantUserObject";
+            this.comboBoxGrantUserObject.Size = new System.Drawing.Size(237, 24);
+            this.comboBoxGrantUserObject.TabIndex = 16;
             // 
             // comboBoxGrantUserAdminOption
             // 
@@ -618,12 +635,16 @@ namespace HospitalProject
             // 
             // comboBoxGrantUserPriv
             // 
+            this.comboBoxGrantUserPriv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxGrantUserPriv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxGrantUserPriv.FormattingEnabled = true;
             this.comboBoxGrantUserPriv.Items.AddRange(new object[] {
             "select",
             "update",
             "insert",
-            "delete"});
+            "delete",
+            "create session",
+            "create table"});
             this.comboBoxGrantUserPriv.Location = new System.Drawing.Point(84, 31);
             this.comboBoxGrantUserPriv.Name = "comboBoxGrantUserPriv";
             this.comboBoxGrantUserPriv.Size = new System.Drawing.Size(237, 24);
@@ -645,13 +666,6 @@ namespace HospitalProject
             this.label2.TabIndex = 7;
             this.label2.Text = "PHÂN QUYỀN";
             // 
-            // textBoxGrantUserObject
-            // 
-            this.textBoxGrantUserObject.Location = new System.Drawing.Point(84, 105);
-            this.textBoxGrantUserObject.Name = "textBoxGrantUserObject";
-            this.textBoxGrantUserObject.Size = new System.Drawing.Size(237, 22);
-            this.textBoxGrantUserObject.TabIndex = 11;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -664,7 +678,7 @@ namespace HospitalProject
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 110);
+            this.label5.Location = new System.Drawing.Point(2, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 17);
             this.label5.TabIndex = 7;
@@ -717,7 +731,7 @@ namespace HospitalProject
             // 
             // textBoxGrantUserColumn
             // 
-            this.textBoxGrantUserColumn.Location = new System.Drawing.Point(84, 70);
+            this.textBoxGrantUserColumn.Location = new System.Drawing.Point(84, 107);
             this.textBoxGrantUserColumn.Name = "textBoxGrantUserColumn";
             this.textBoxGrantUserColumn.Size = new System.Drawing.Size(237, 22);
             this.textBoxGrantUserColumn.TabIndex = 10;
@@ -725,7 +739,7 @@ namespace HospitalProject
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 75);
+            this.label3.Location = new System.Drawing.Point(3, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 17);
             this.label3.TabIndex = 2;
@@ -943,6 +957,16 @@ namespace HospitalProject
             this.toolTipAlterUserPrivButton.ReshowDelay = 100;
             this.toolTipAlterUserPrivButton.ToolTipTitle = "Cho ai, quyền(nhập chuỗi quyền)";
             // 
+            // buttonShowListRole
+            // 
+            this.buttonShowListRole.Location = new System.Drawing.Point(458, 427);
+            this.buttonShowListRole.Name = "buttonShowListRole";
+            this.buttonShowListRole.Size = new System.Drawing.Size(94, 57);
+            this.buttonShowListRole.TabIndex = 17;
+            this.buttonShowListRole.Text = "Xem danh sách vai trò";
+            this.buttonShowListRole.UseVisualStyleBackColor = true;
+            this.buttonShowListRole.Click += new System.EventHandler(this.buttonShowListRole_Click);
+            // 
             // admin
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -992,7 +1016,6 @@ namespace HospitalProject
         private System.Windows.Forms.Button buttonShowUserPriv;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBoxGrantUserGrantee;
-        private System.Windows.Forms.TextBox textBoxGrantUserObject;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel3;
@@ -1063,5 +1086,8 @@ namespace HospitalProject
         private System.Windows.Forms.Button buttonShowKeyEncrypted;
         private System.Windows.Forms.DataGridView dataGridViewShowKeyEncrypted;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox comboBoxGrantUserObject;
+        private System.Windows.Forms.ToolTip toolTipCheckRecentPrevilege;
+        private System.Windows.Forms.Button buttonShowListRole;
     }
 }

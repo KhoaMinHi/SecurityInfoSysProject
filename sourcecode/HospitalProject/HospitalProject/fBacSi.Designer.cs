@@ -31,10 +31,10 @@ namespace HospitalProject
         {
             this.tabPageUser = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.buttonCreateUser = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxUserName = new System.Windows.Forms.ComboBox();
-            this.textBoxUserPassWord = new System.Windows.Forms.TextBox();
+            this.buttonSearchPatients = new System.Windows.Forms.Button();
+            this.dateTimePickerMedicalExamination = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxPatientName = new System.Windows.Forms.ComboBox();
+            this.textBoxPatientID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@ namespace HospitalProject
             this.textBoxMedicalExaminationCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxEnterDoctorConclusion = new System.Windows.Forms.TextBox();
             this.buttonUpdateDoctorConclusion = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@ namespace HospitalProject
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvShowPatients = new System.Windows.Forms.DataGridView();
             this.tabControlAdmin = new System.Windows.Forms.TabControl();
-            this.textBoxEnterDoctorConclusion = new System.Windows.Forms.TextBox();
             this.tabPageUser.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,10 +73,10 @@ namespace HospitalProject
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.buttonCreateUser);
-            this.panel4.Controls.Add(this.dateTimePicker1);
-            this.panel4.Controls.Add(this.comboBoxUserName);
-            this.panel4.Controls.Add(this.textBoxUserPassWord);
+            this.panel4.Controls.Add(this.buttonSearchPatients);
+            this.panel4.Controls.Add(this.dateTimePickerMedicalExamination);
+            this.panel4.Controls.Add(this.comboBoxPatientName);
+            this.panel4.Controls.Add(this.textBoxPatientID);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.label11);
@@ -89,40 +89,40 @@ namespace HospitalProject
             this.panel4.Size = new System.Drawing.Size(418, 211);
             this.panel4.TabIndex = 5;
             // 
-            // buttonCreateUser
+            // buttonSearchPatients
             // 
-            this.buttonCreateUser.Location = new System.Drawing.Point(326, 162);
-            this.buttonCreateUser.Name = "buttonCreateUser";
-            this.buttonCreateUser.Size = new System.Drawing.Size(75, 36);
-            this.buttonCreateUser.TabIndex = 6;
-            this.buttonCreateUser.TabStop = false;
-            this.buttonCreateUser.Text = "Tìm";
-            this.buttonCreateUser.UseVisualStyleBackColor = true;
-            this.buttonCreateUser.Click += new System.EventHandler(this.buttonCreateUser_Click);
+            this.buttonSearchPatients.Location = new System.Drawing.Point(326, 162);
+            this.buttonSearchPatients.Name = "buttonSearchPatients";
+            this.buttonSearchPatients.Size = new System.Drawing.Size(75, 36);
+            this.buttonSearchPatients.TabIndex = 6;
+            this.buttonSearchPatients.TabStop = false;
+            this.buttonSearchPatients.Text = "Tìm";
+            this.buttonSearchPatients.UseVisualStyleBackColor = true;
+            this.buttonSearchPatients.Click += new System.EventHandler(this.buttonSearchPatients_Click);
             // 
-            // dateTimePicker1
+            // dateTimePickerMedicalExamination
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(129, 100);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(271, 22);
-            this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePickerMedicalExamination.Location = new System.Drawing.Point(129, 100);
+            this.dateTimePickerMedicalExamination.Name = "dateTimePickerMedicalExamination";
+            this.dateTimePickerMedicalExamination.Size = new System.Drawing.Size(271, 22);
+            this.dateTimePickerMedicalExamination.TabIndex = 11;
             // 
-            // comboBoxUserName
+            // comboBoxPatientName
             // 
-            this.comboBoxUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxUserName.FormattingEnabled = true;
-            this.comboBoxUserName.Location = new System.Drawing.Point(129, 28);
-            this.comboBoxUserName.Name = "comboBoxUserName";
-            this.comboBoxUserName.Size = new System.Drawing.Size(272, 24);
-            this.comboBoxUserName.TabIndex = 10;
+            this.comboBoxPatientName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxPatientName.FormattingEnabled = true;
+            this.comboBoxPatientName.Location = new System.Drawing.Point(129, 28);
+            this.comboBoxPatientName.Name = "comboBoxPatientName";
+            this.comboBoxPatientName.Size = new System.Drawing.Size(272, 24);
+            this.comboBoxPatientName.TabIndex = 10;
             // 
-            // textBoxUserPassWord
+            // textBoxPatientID
             // 
-            this.textBoxUserPassWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserPassWord.Location = new System.Drawing.Point(129, 65);
-            this.textBoxUserPassWord.Name = "textBoxUserPassWord";
-            this.textBoxUserPassWord.Size = new System.Drawing.Size(272, 22);
-            this.textBoxUserPassWord.TabIndex = 5;
+            this.textBoxPatientID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPatientID.Location = new System.Drawing.Point(129, 65);
+            this.textBoxPatientID.Name = "textBoxPatientID";
+            this.textBoxPatientID.Size = new System.Drawing.Size(272, 22);
+            this.textBoxPatientID.TabIndex = 5;
             // 
             // label7
             // 
@@ -199,6 +199,14 @@ namespace HospitalProject
             this.panel2.Size = new System.Drawing.Size(418, 306);
             this.panel2.TabIndex = 4;
             // 
+            // textBoxEnterDoctorConclusion
+            // 
+            this.textBoxEnterDoctorConclusion.Location = new System.Drawing.Point(129, 67);
+            this.textBoxEnterDoctorConclusion.MinimumSize = new System.Drawing.Size(250, 100);
+            this.textBoxEnterDoctorConclusion.Name = "textBoxEnterDoctorConclusion";
+            this.textBoxEnterDoctorConclusion.Size = new System.Drawing.Size(272, 22);
+            this.textBoxEnterDoctorConclusion.TabIndex = 17;
+            // 
             // buttonUpdateDoctorConclusion
             // 
             this.buttonUpdateDoctorConclusion.Location = new System.Drawing.Point(325, 95);
@@ -264,14 +272,6 @@ namespace HospitalProject
             this.tabControlAdmin.Size = new System.Drawing.Size(1093, 592);
             this.tabControlAdmin.TabIndex = 4;
             // 
-            // textBoxEnterDoctorConclusion
-            // 
-            this.textBoxEnterDoctorConclusion.Location = new System.Drawing.Point(129, 67);
-            this.textBoxEnterDoctorConclusion.MinimumSize = new System.Drawing.Size(250, 100);
-            this.textBoxEnterDoctorConclusion.Name = "textBoxEnterDoctorConclusion";
-            this.textBoxEnterDoctorConclusion.Size = new System.Drawing.Size(272, 22);
-            this.textBoxEnterDoctorConclusion.TabIndex = 17;
-            // 
             // fBacSi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -295,12 +295,12 @@ namespace HospitalProject
 
         private System.Windows.Forms.TabPage tabPageUser;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ComboBox comboBoxUserName;
-        private System.Windows.Forms.TextBox textBoxUserPassWord;
+        private System.Windows.Forms.ComboBox comboBoxPatientName;
+        private System.Windows.Forms.TextBox textBoxPatientID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonCreateUser;
+        private System.Windows.Forms.Button buttonSearchPatients;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
@@ -310,7 +310,7 @@ namespace HospitalProject
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dtgvShowPatients;
         private System.Windows.Forms.TabControl tabControlAdmin;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerMedicalExamination;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxMedicalExaminationCode2Updat;
         private System.Windows.Forms.Label label3;

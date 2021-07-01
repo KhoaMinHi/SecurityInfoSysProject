@@ -18,19 +18,6 @@ namespace HospitalProject
             InitializeComponent();
         }
 
-        private void buttonCreateUser_Click(object sender, EventArgs e)
-        {
-            string query = "select b.mabn, b.tenbn, h.makb, h.trieuchung, SYS.F_MYDECRYPTION(h.ketluanbs, k.keystring), h.ngaykb" + 
-            " from bv_schema.benhnhan b join BV_SCHEMA.hosokb h on h.mabn = b.mabn " +
-            " left JOIN BV_SCHEMA.hosobenhnhankeytable k on k.makb = h.makb";
-                
-            if (textBoxMedicalExaminationCode.Text != "")
-            {
-                query += " where h.makb = " + textBoxMedicalExaminationCode.Text;
-            }
-            DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
-            dtgvShowPatients.DataSource = data;
-        }
 
         void updateDoctorConclusionBidingTEXTBOXMEDICAL()
         {
@@ -59,6 +46,20 @@ namespace HospitalProject
         {
             textBoxMedicalExaminationCode2Updat.DataBindings.Add(new Binding("Text", dtgvShowPatients.DataSource, "makb", true, DataSourceUpdateMode.OnValidation));
             textBoxMedicalExaminationCode2Updat.DataBindings.Clear();
+        }
+
+        private void buttonSearchPatients_Click(object sender, EventArgs e)
+        {
+            string query = "select b.mabn, b.tenbn, h.makb, h.trieuchung, SYS.F_MYDECRYPTION(h.ketluanbs, k.keystring), h.ngaykb" +
+            " from bv_schema.benhnhan b join BV_SCHEMA.hosokb h on h.mabn = b.mabn " +
+            " left JOIN BV_SCHEMA.hosobenhnhankeytable k on k.makb = h.makb";
+
+            if (textBoxMedicalExaminationCode.Text != "")
+            {
+                query += " where h.makb = " + textBoxMedicalExaminationCode.Text;
+            }
+            DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+            dtgvShowPatients.DataSource = data;
         }
     }
 }

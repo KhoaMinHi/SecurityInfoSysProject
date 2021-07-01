@@ -32,10 +32,9 @@ namespace HospitalProject.DAO
             {
                 using (OracleConnection connection = new OracleConnection(ConnStr))
                 {
-
+                    
                     connection.Open();
 
-                    
                     OracleCommand command = new OracleCommand();
                     command.Connection = connection;
 
@@ -84,7 +83,7 @@ namespace HospitalProject.DAO
             {
                 using (OracleConnection connection = new OracleConnection(ConnStr))
                 {
-
+                    
                     connection.Open();
 
                     OracleCommand command = new OracleCommand();
@@ -139,7 +138,7 @@ namespace HospitalProject.DAO
             {
                 using (OracleConnection connection = new OracleConnection(ConnStr))
                 {
-
+                    
                     connection.Open();
 
                     OracleCommand command = new OracleCommand();

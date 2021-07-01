@@ -100,18 +100,20 @@ ROLE_SYS_PRIVS - System privileges granted to roles
 ROLE_TAB_PRIVS - Table privileges granted to roles
 */
 
-select * 
-from dba_role_privs;
-select * from role_role_privs;
+select * from dba_role_privs WHERE GRANTED_ROLE = 'QUANLYTAINGUYENVANHANSU';
+select distinct role from dba_roles;
+
+--select * from role_role_privs;
 select * from role_sys_privs;
 select * from role_tab_privs;
 
-select dr.grantee, dr.granted_role, rs.privilege as sysprivs, rs.admin_option,
-    rt.table_name, rt.privilege as tabbleprivs, rt.owner
-from dba_role_privs dr join role_sys_privs rs on dr.granted_role = rs.role
-    join role_tab_privs rt on rt.role = dr.granted_role
-where dr.grantee = 'SYS';
+select dr.granted_role, dr.grantee, rs.privilege as quyenhethong, dr.admin_option,
+    rt.table_name, rt.privilege as quyentrenbang, rt.owner
+from dba_role_privs dr left join role_sys_privs rs on dr.granted_role = rs.role
+    left join role_tab_privs rt on rt.role = dr.granted_role
+where dr.granted_role = 'QUANLYTAINGUYENVANHANSU';
 
+select * from dba_roles dr left join dba
 --tao role
 
 

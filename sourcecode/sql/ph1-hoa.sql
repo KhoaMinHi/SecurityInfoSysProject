@@ -16,8 +16,8 @@ end;
 create or replace procedure showPrivilegeOfUserOrRole
     (granteename varchar2,obj varchar2)
 is
-    grantee_name varchar2(50) := granteename;
-    v_obj varchar2(50) := obj;
+    grantee_name varchar2(500) := granteename;
+    v_obj varchar2(500) := obj;
     stmt varchar2(1000);
 begin
     stmt := 'select * from ' || v_obj || ' where granteename = ' || grantee_name;
@@ -33,11 +33,11 @@ execute showPrivilegeOfUserOrRole('SYSTEM', 'dba_tab_privs');
 --obt: doi tuong thao tac (role,user)
 create or replace procedure CDUUserOrRole(CDU varchar2, obj varchar2, objectname varchar2,pass varchar2 := null)
 is
-    object_name varchar2(20) := objectname;
-    pwd varchar2(20) := pass;
-    c_d_u varchar2(20) := CDU;
-    v_obj varchar2(20) := obj;
-    stmt varchar2(1000);
+    object_name varchar2(2000) := objectname;
+    pwd varchar2(2000) := pass;
+    c_d_u varchar2(2000) := CDU;
+    v_obj varchar2(2000) := obj;
+    stmt varchar2(2000);
 begin
     if v_obj != 'user' or v_obj != 'role'
     then 
@@ -46,7 +46,11 @@ begin
     end if;
     if c_d_u = 'create'
     then
-        stmt := 'create ' || v_obj || ' ' || object_name || ' identified by ' || pwd ;
+        if v_obj = 'role' then
+            stmt := 'create ' || v_obj || ' ' || object_name;
+        else
+            stmt := 'create ' || v_obj || ' ' || object_name || ' identified by ' || pwd ;
+        end if;
     elsif c_d_u = 'delete'
     then 
         stmt := 'drop ' || v_obj || ' ' || object_name;
@@ -73,12 +77,12 @@ select * from dba_users;
 --obj: doi tuong duoc thu hoi quyen (co the co hoac khong)
 create or replace procedure revokePriv(objectname varchar2, priv varchar2,obj varchar2 := null)
 is
-    object_name varchar2(20) := objectname;
-    v_priv varchar2(20) := priv; 
-    v_obj varchar2(20) := obj;
-    stmt varchar2(1000);
+    object_name varchar2(1000) := objectname;
+    v_priv varchar2(1000) := priv; 
+    v_obj varchar2(1000) := obj;
+    stmt varchar2(2000);
 begin
-    if v_obj != null
+    if v_obj is not null
     then
         stmt := 'revoke ' || v_priv || ' on ' || obj || ' from ' || object_name;
     else
@@ -88,7 +92,8 @@ begin
 end;
 
 REVOKE UPDATE (c1,c2) ON TABLE s.v FROM PUBLIC
-quyền, đối tượng, cho ai
+exec revokepriv('KHA', 'CREATE SESSION');
+--quyền, đối tượng, cho ai
 --cap quyen cho user or role
 --objname: ten doi tuong can cap
 --priv: quyen can can
@@ -96,12 +101,12 @@ quyền, đối tượng, cho ai
 --WRO: with grant option
 create or replace procedure grantPriv(priv varchar2, cot varchar2 := null, obj varchar2 := null, objectname varchar2, WRO char := '0')
 is
-    object_name varchar2(50) := objectname;
-    v_priv varchar2(50) := priv; 
-    v_obj varchar2(50) := obj;
+    object_name varchar2(500) := objectname;
+    v_priv varchar2(500) := priv; 
+    v_obj varchar2(500) := obj;
     v_wro char(1) := WRO;
-    v_col varchar2(50) := cot;
-    stmt varchar2(1000);
+    v_col varchar2(500) := cot;
+    stmt varchar2(10000);
 begin
     if (v_priv = 'select' or v_priv = 'update') and v_col != null
     then 
@@ -144,16 +149,22 @@ end;
 
 execute grantPriv('select', 'id', 'c##bv_schema.test', 'c##hoang'); 
 
+select * from dba_sys_privs;
+select * from dba_users;
+select u.username as TENNGUOIDUNG, U.user_id as ID, u.account_status as trangthaitaikhoan,  p.privilege as quyen, p.admin_option as chiase, u.lock_date as ngaybikhoa, u.expiry_date as ngayhethang, u.created as ngaytao, u.last_login as ngaydangnhapgannhat, u.password_change_date as ngaydoimatkhau from dba_sys_privs p join dba_users u on p.grantee = u.username;
+
+select * from dba_objects;
+
 --chinh sua quyen cua user or role
 --objectname : ten doi tuong can sua quyen
 --obj: loai doi tuong can sua quyen (user or role)
 --priv: quyen muon chinh sua
 create or replace procedure alterUserOrRole(objectname varchar2,obj varchar2,priv varchar2)
 is
-    object_name varchar2(100) := objectname;
-    v_obj varchar2(100) := obj;
-    v_priv varchar2(100) := priv;
-    stmt varchar2(1000);
+    object_name varchar2(1000) := objectname;
+    v_obj varchar2(1000) := obj;
+    v_priv varchar2(1000) := priv;
+    stmt varchar2(10000);
 begin
     stmt := 'alter ' || v_obj || ' ' || object_name || ' ' || v_priv;
     execute immediate(stmt);

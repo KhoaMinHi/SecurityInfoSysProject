@@ -21,7 +21,10 @@ namespace HospitalProject
 
         private void showalluser_Click(object sender, EventArgs e)
         {
-            string query = "select * from dba_users";
+            string query = "select u.username as TENNGUOIDUNG, U.user_id as ID, u.account_status as trangthaitaikhoan,  " +
+                "p.privilege as quyen, p.admin_option as chiase, u.lock_date as ngaybikhoa, u.expiry_date as ngayhethang, " +
+                "u.created as ngaytao, u.last_login as ngaydangnhapgannhat, u.password_change_date as ngaydoimatkhau " +
+                "from dba_sys_privs p join dba_users u on p.grantee = u.username";
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dtgvShowAllUser.DataSource = data;
         }
@@ -33,7 +36,9 @@ namespace HospitalProject
 
         private void buttonShowUserPriv_Click(object sender, EventArgs e)
         {
-            string query = "select o.owner as chusohuu, o.object_name as tendoituong, o.object_type as loai , t.grantee as nguoiduocquyenBang,t.privilege as quyen from dba_objects o left join dba_tab_privs t on o.object_name = t.table_name";
+            string query = "select o.owner as chusohuu, o.object_name as tendoituong, o.object_type as loai ," +
+                " t.grantee as nguoiduocquyenBang,t.privilege as quyen " +
+                "from dba_objects o left join dba_tab_privs t on o.object_name = t.table_name";
 
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dtgvShowAllUser.DataSource = data;
@@ -83,14 +88,14 @@ namespace HospitalProject
         private void buttonGrantUser_Click(object sender, EventArgs e)
         {
             string query = "grantPriv priv cot obj objectname WRO";
-            object[] parameter = { comboBoxGrantUserPriv.Text, textBoxGrantUserColumn.Text, textBoxGrantUserObject.Text, textBoxGrantUserGrantee.Text, comboBoxGrantUserAdminOption.Text };
+            object[] parameter = { comboBoxGrantUserPriv.Text, textBoxGrantUserColumn.Text, comboBoxGrantUserObject.Text, textBoxGrantUserGrantee.Text, comboBoxGrantUserAdminOption.Text };
             DataProvider.Instance.ExecuteParameterNonQuery(query, "procedure", parameter);
         }
 
         private void buttonRevokeUserPriv_Click(object sender, EventArgs e)
         {
             string query = "revokePriv objectname priv obj";
-            object[] parameter = { textBoxGrantUserGrantee.Text, comboBoxGrantUserPriv.Text, textBoxGrantUserObject.Text};
+            object[] parameter = { textBoxGrantUserGrantee.Text, comboBoxGrantUserPriv.Text, comboBoxGrantUserObject.Text};
             DataProvider.Instance.ExecuteParameterNonQuery(query, "procedure", parameter);
         }
 
@@ -180,12 +185,12 @@ namespace HospitalProject
         private void buttonShowRecentRolePriv_Click(object sender, EventArgs e)
         {
 
-            string query = "select dr.grantee, dr.granted_role, rs.privilege as sysprivs, rs.admin_option," +
-                   "rt.table_name, rt.privilege as tabbleprivs, rt.owner" +
-                    " from dba_role_privs dr join role_sys_privs rs on dr.granted_role = rs.role" +
-                    " join role_tab_privs rt on rt.role = dr.granted_role" +
-                        " where dr.grantee = '" + textBoxGrantRoleGrantee.Text + "'";
-
+            string query = "select dr.granted_role, dr.grantee, rs.privilege as quyenhethong, dr.admin_option,"
+                  +  " rt.table_name, rt.privilege as quyentrenbang, rt.owner" 
+               + " from dba_role_privs dr left join role_sys_privs rs on dr.granted_role = rs.role"
+                    +" left join role_tab_privs rt on rt.role = dr.granted_role"
+                + " where dr.granted_role = '" + textBoxGrantRoleGrantee.Text + "'";
+                
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dataGridViewRole.DataSource = data;
         }
@@ -233,6 +238,14 @@ namespace HospitalProject
 
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dataGridViewShowKeyEncrypted.DataSource = data;
+        }
+
+        private void buttonShowListRole_Click(object sender, EventArgs e)
+        {
+            string query = "select * from dba_roles";
+
+            DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+            dataGridViewRole.DataSource = data;
         }
     }
 }
