@@ -141,3 +141,8 @@ SELECT SYS_CONTEXT ('USERENV', 'SESSION_USER')
    FROM DUAL;
    
 select value from v$parameter where name='service_names'
+
+
+--====== Table =======--
+select * from dba_tables;
+select * from dba_views;

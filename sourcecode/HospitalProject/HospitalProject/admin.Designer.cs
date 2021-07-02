@@ -31,6 +31,7 @@ namespace HospitalProject
         {
             this.components = new System.ComponentModel.Container();
             this.tabPageRole = new System.Windows.Forms.TabPage();
+            this.buttonShowListRole = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.comboBoxGrantRoleAdminOption = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -111,7 +112,12 @@ namespace HospitalProject
             this.toolTipRevokeUser = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAlterUserPrivButton = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipCheckRecentPrevilege = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonShowListRole = new System.Windows.Forms.Button();
+            this.richTextBoxStatement = new System.Windows.Forms.RichTextBox();
+            this.dataGridViewSatementResult = new System.Windows.Forms.DataGridView();
+            this.buttonExecStatement = new System.Windows.Forms.Button();
+            this.buttonShowOther = new System.Windows.Forms.Button();
+            this.comboBoxShowOther = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabPageRole.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -128,8 +134,10 @@ namespace HospitalProject
             this.tabPageAudit.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAudit)).BeginInit();
+            this.tabPageTable.SuspendLayout();
             this.tabPageCryptography.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowKeyEncrypted)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSatementResult)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageRole
@@ -146,6 +154,16 @@ namespace HospitalProject
             this.tabPageRole.TabIndex = 1;
             this.tabPageRole.Text = "Vai trò";
             this.tabPageRole.UseVisualStyleBackColor = true;
+            // 
+            // buttonShowListRole
+            // 
+            this.buttonShowListRole.Location = new System.Drawing.Point(458, 427);
+            this.buttonShowListRole.Name = "buttonShowListRole";
+            this.buttonShowListRole.Size = new System.Drawing.Size(94, 57);
+            this.buttonShowListRole.TabIndex = 17;
+            this.buttonShowListRole.Text = "Xem danh sách vai trò";
+            this.buttonShowListRole.UseVisualStyleBackColor = true;
+            this.buttonShowListRole.Click += new System.EventHandler(this.buttonShowListRole_Click);
             // 
             // panel7
             // 
@@ -892,12 +910,18 @@ namespace HospitalProject
             // 
             // tabPageTable
             // 
+            this.tabPageTable.Controls.Add(this.label25);
+            this.tabPageTable.Controls.Add(this.comboBoxShowOther);
+            this.tabPageTable.Controls.Add(this.buttonShowOther);
+            this.tabPageTable.Controls.Add(this.buttonExecStatement);
+            this.tabPageTable.Controls.Add(this.dataGridViewSatementResult);
+            this.tabPageTable.Controls.Add(this.richTextBoxStatement);
             this.tabPageTable.Location = new System.Drawing.Point(4, 25);
             this.tabPageTable.Name = "tabPageTable";
             this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTable.Size = new System.Drawing.Size(1011, 563);
             this.tabPageTable.TabIndex = 3;
-            this.tabPageTable.Text = "Bảng";
+            this.tabPageTable.Text = "Khác";
             this.tabPageTable.UseVisualStyleBackColor = true;
             // 
             // tabPageCryptography
@@ -957,15 +981,63 @@ namespace HospitalProject
             this.toolTipAlterUserPrivButton.ReshowDelay = 100;
             this.toolTipAlterUserPrivButton.ToolTipTitle = "Cho ai, quyền(nhập chuỗi quyền)";
             // 
-            // buttonShowListRole
+            // richTextBoxStatement
             // 
-            this.buttonShowListRole.Location = new System.Drawing.Point(458, 427);
-            this.buttonShowListRole.Name = "buttonShowListRole";
-            this.buttonShowListRole.Size = new System.Drawing.Size(94, 57);
-            this.buttonShowListRole.TabIndex = 17;
-            this.buttonShowListRole.Text = "Xem danh sách vai trò";
-            this.buttonShowListRole.UseVisualStyleBackColor = true;
-            this.buttonShowListRole.Click += new System.EventHandler(this.buttonShowListRole_Click);
+            this.richTextBoxStatement.Location = new System.Drawing.Point(647, 6);
+            this.richTextBoxStatement.Name = "richTextBoxStatement";
+            this.richTextBoxStatement.Size = new System.Drawing.Size(358, 432);
+            this.richTextBoxStatement.TabIndex = 0;
+            this.richTextBoxStatement.Text = "";
+            // 
+            // dataGridViewSatementResult
+            // 
+            this.dataGridViewSatementResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSatementResult.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewSatementResult.Name = "dataGridViewSatementResult";
+            this.dataGridViewSatementResult.RowHeadersWidth = 51;
+            this.dataGridViewSatementResult.RowTemplate.Height = 24;
+            this.dataGridViewSatementResult.Size = new System.Drawing.Size(602, 432);
+            this.dataGridViewSatementResult.TabIndex = 1;
+            // 
+            // buttonExecStatement
+            // 
+            this.buttonExecStatement.Location = new System.Drawing.Point(920, 444);
+            this.buttonExecStatement.Name = "buttonExecStatement";
+            this.buttonExecStatement.Size = new System.Drawing.Size(85, 37);
+            this.buttonExecStatement.TabIndex = 2;
+            this.buttonExecStatement.Text = "Thực thi";
+            this.buttonExecStatement.UseVisualStyleBackColor = true;
+            this.buttonExecStatement.Click += new System.EventHandler(this.buttonExecStatement_Click);
+            // 
+            // buttonShowOther
+            // 
+            this.buttonShowOther.Location = new System.Drawing.Point(523, 450);
+            this.buttonShowOther.Name = "buttonShowOther";
+            this.buttonShowOther.Size = new System.Drawing.Size(85, 37);
+            this.buttonShowOther.TabIndex = 3;
+            this.buttonShowOther.Text = "Xem";
+            this.buttonShowOther.UseVisualStyleBackColor = true;
+            this.buttonShowOther.Click += new System.EventHandler(this.buttonShowOther_Click);
+            // 
+            // comboBoxShowOther
+            // 
+            this.comboBoxShowOther.FormattingEnabled = true;
+            this.comboBoxShowOther.Items.AddRange(new object[] {
+            "dba_tables",
+            "dba_views"});
+            this.comboBoxShowOther.Location = new System.Drawing.Point(366, 457);
+            this.comboBoxShowOther.Name = "comboBoxShowOther";
+            this.comboBoxShowOther.Size = new System.Drawing.Size(147, 24);
+            this.comboBoxShowOther.TabIndex = 4;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(252, 460);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(108, 17);
+            this.label25.TabIndex = 5;
+            this.label25.Text = "Chọn đối tượng:";
             // 
             // admin
             // 
@@ -998,9 +1070,12 @@ namespace HospitalProject
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAudit)).EndInit();
+            this.tabPageTable.ResumeLayout(false);
+            this.tabPageTable.PerformLayout();
             this.tabPageCryptography.ResumeLayout(false);
             this.tabPageCryptography.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowKeyEncrypted)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSatementResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1089,5 +1164,11 @@ namespace HospitalProject
         private System.Windows.Forms.ComboBox comboBoxGrantUserObject;
         private System.Windows.Forms.ToolTip toolTipCheckRecentPrevilege;
         private System.Windows.Forms.Button buttonShowListRole;
+        private System.Windows.Forms.Button buttonExecStatement;
+        private System.Windows.Forms.DataGridView dataGridViewSatementResult;
+        private System.Windows.Forms.RichTextBox richTextBoxStatement;
+        private System.Windows.Forms.ComboBox comboBoxShowOther;
+        private System.Windows.Forms.Button buttonShowOther;
+        private System.Windows.Forms.Label label25;
     }
 }

@@ -247,5 +247,37 @@ namespace HospitalProject
             DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
             dataGridViewRole.DataSource = data;
         }
+
+        private void buttonExecStatement_Click(object sender, EventArgs e)
+        {
+            var yesno = MessageBox.Show("Bạn có muốn thực thi câu lệnh: '" + richTextBoxStatement.Text + "'?", "Thực thi lệnh", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (yesno == DialogResult.No)
+            {
+                return;
+            }
+            string query = richTextBoxStatement.Text;
+            DataProvider.Instance.ExecuteParameterNonQuery(query);
+        }
+
+        private void buttonShowOther_Click(object sender, EventArgs e)
+        {
+            string query;
+            if (comboBoxShowOther.Text == "dba_tables")
+            {
+                query = "select * from dba_tables";
+            }
+            else if(comboBoxShowOther.Text == "dba_views")
+            {
+                query = "select * from dba_views";
+            }
+            else
+            {
+                return;
+            }
+            
+
+            DataTable data = DataProvider.Instance.ExecuteParameterQuery(query);
+            dataGridViewSatementResult.DataSource = data;
+        }
     }
 }
