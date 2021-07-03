@@ -51,11 +51,17 @@ namespace HospitalProject
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvShowPatients = new System.Windows.Forms.DataGridView();
             this.tabControlAdmin = new System.Windows.Forms.TabControl();
+            this.tabPageShowDoctorSalary = new System.Windows.Forms.TabPage();
+            this.dataGridViewShowSalaryDoctor = new System.Windows.Forms.DataGridView();
+            this.buttonShowDoctorSalary = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPageUser.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPatients)).BeginInit();
             this.tabControlAdmin.SuspendLayout();
+            this.tabPageShowDoctorSalary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowSalaryDoctor)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageUser
@@ -266,11 +272,55 @@ namespace HospitalProject
             // tabControlAdmin
             // 
             this.tabControlAdmin.Controls.Add(this.tabPageUser);
+            this.tabControlAdmin.Controls.Add(this.tabPageShowDoctorSalary);
+            this.tabControlAdmin.Controls.Add(this.tabPage1);
             this.tabControlAdmin.Location = new System.Drawing.Point(-4, 2);
             this.tabControlAdmin.Name = "tabControlAdmin";
             this.tabControlAdmin.SelectedIndex = 0;
             this.tabControlAdmin.Size = new System.Drawing.Size(1093, 592);
             this.tabControlAdmin.TabIndex = 4;
+            // 
+            // tabPageShowDoctorSalary
+            // 
+            this.tabPageShowDoctorSalary.Controls.Add(this.buttonShowDoctorSalary);
+            this.tabPageShowDoctorSalary.Controls.Add(this.dataGridViewShowSalaryDoctor);
+            this.tabPageShowDoctorSalary.Location = new System.Drawing.Point(4, 25);
+            this.tabPageShowDoctorSalary.Name = "tabPageShowDoctorSalary";
+            this.tabPageShowDoctorSalary.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageShowDoctorSalary.Size = new System.Drawing.Size(1085, 563);
+            this.tabPageShowDoctorSalary.TabIndex = 1;
+            this.tabPageShowDoctorSalary.Text = "Xem lương";
+            this.tabPageShowDoctorSalary.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewShowSalaryDoctor
+            // 
+            this.dataGridViewShowSalaryDoctor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewShowSalaryDoctor.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewShowSalaryDoctor.Name = "dataGridViewShowSalaryDoctor";
+            this.dataGridViewShowSalaryDoctor.RowHeadersWidth = 51;
+            this.dataGridViewShowSalaryDoctor.RowTemplate.Height = 24;
+            this.dataGridViewShowSalaryDoctor.Size = new System.Drawing.Size(695, 427);
+            this.dataGridViewShowSalaryDoctor.TabIndex = 0;
+            // 
+            // buttonShowDoctorSalary
+            // 
+            this.buttonShowDoctorSalary.Location = new System.Drawing.Point(704, 6);
+            this.buttonShowDoctorSalary.Name = "buttonShowDoctorSalary";
+            this.buttonShowDoctorSalary.Size = new System.Drawing.Size(90, 34);
+            this.buttonShowDoctorSalary.TabIndex = 1;
+            this.buttonShowDoctorSalary.Text = "Xem lương";
+            this.buttonShowDoctorSalary.UseVisualStyleBackColor = true;
+            this.buttonShowDoctorSalary.Click += new System.EventHandler(this.buttonShowDoctorSalary_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1085, 563);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // fBacSi
             // 
@@ -287,6 +337,8 @@ namespace HospitalProject
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPatients)).EndInit();
             this.tabControlAdmin.ResumeLayout(false);
+            this.tabPageShowDoctorSalary.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShowSalaryDoctor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,5 +367,9 @@ namespace HospitalProject
         private System.Windows.Forms.TextBox textBoxMedicalExaminationCode2Updat;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxEnterDoctorConclusion;
+        private System.Windows.Forms.TabPage tabPageShowDoctorSalary;
+        private System.Windows.Forms.Button buttonShowDoctorSalary;
+        private System.Windows.Forms.DataGridView dataGridViewShowSalaryDoctor;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

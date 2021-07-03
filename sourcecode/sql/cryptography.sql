@@ -101,12 +101,17 @@ before update of ketluanbs on BV_SCHEMA.hosokb for each row
 declare
     key_string varchar2(150);
     makbnumber number(38,0);
+    numberrow number;
 begin
     key_string := dbms_random.string('p', 16);
     :new.ketluanbs := F_MYENCRYPTION(:new.ketluanbs, key_string);
     
-    insert into bv_schema.hosobenhnhankeytable(makb, keystring) values(:old.makb, key_string);
-    commit;
+    select count(*) into numberrow from bv_schema.hosobenhnhankeytable where makb = :old.makb;
+    if numberrow = 0 then
+        insert into bv_schema.hosobenhnhankeytable(makb, keystring) values(:old.makb, key_string);
+    else
+        update bv_schema.hosobenhnhankeytable set keystring = key_string where makb = :old.makb;
+    end if;
 end;
 
 drop trigger myencryption;
@@ -115,6 +120,15 @@ create table bv_schema.hosobenhnhankeytable
     makb NUMBER(38,0), 
 	keystring VARCHAR2(128)
 );
+
+/*
+set serveroutput on;
+declare 
+    a number;
+begin
+select count(makb) into a from bv_schema.hosobenhnhankeytable where makb = 1;
+dbms_output.put_line('kq:' || a);
+end;*/
 
 --bê cái nay qua bv_schema phan quyen select lai cho sys
 grant all on BV_SCHEMA.hosobenhnhankeytable to sys;
