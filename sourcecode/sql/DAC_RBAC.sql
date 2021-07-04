@@ -15,23 +15,23 @@ as
 begin
     for i in (select owner,table_name from all_tables where owner = username)
     loop
+        dbms_output.put_line('grant select on ' || i.owner || '.' || i.table_name || ' to ' || grantee);
         execute immediate 'grant select on ' || i.owner || '.' || i.table_name || ' to ' || grantee;
     end loop;
 end;
-
 
 --cap quyen cho role QuanLyTaiNguyenVaNhanSu
 --role QUANLYTAINGUYENVANHANSU duoc them,xoa,sua tren bang NHANVIEN,DONVI va Xem tat ca cac bang
 grant insert,delete,update on NHANVIEN to QuanLyTaiNguyenVaNhanSu;
 grant insert,delete,update on DONVI to QuanLyTaiNguyenVaNhanSu;
-execute grantSelectAllTable('QUANLYBENHVIEN','QuanLyTaiNguyenVaNhanSu');
+execute grantSelectAllTable('BV_SCHEMA','QuanLyTaiNguyenVaNhanSu');
 
 --cap quyen cho role QuanLyTaiVu
 --QuanLyTaiVu duoc quyen insert,update tren don gia thuoc va don gia dich vu
 --QuanLyTaiVu duoc quyen select tren tat ca bang
 grant insert,update(DONGIADVU) on DICHVU to QuanLyTaiVu;
 grant insert,update(DONGIATHUOC) on THUOC to QuanLyTaiVu;
-execute grantSelectAllTable('QUANLYBENHVIEN','QuanLyTaiVu');
+execute grantSelectAllTable('BV_SCHEMA','QuanLyTaiVu');
 
 --cap quyen cho role QuanLyChuyenMon
 grant select on HOSOKB to QuanLyChuyenMon;
@@ -76,8 +76,8 @@ from HOSOKB join SUDUNG on HOSOKB.MAKB = SUDUNG.MAKB
             join DONTHUOC on HOSOKB.MAKB = DONTHUOC.MAKB
             join CTDONTHUOC on DONTHUOC.MAKB = CTDONTHUOC.MADT
             join THUOC on CTDONTHUOC.MATHUOC = THUOC.MATHUOC
-where NHANVIEN.VAITRO = 'Bac Si' and NHANVIEN.MANV = sys_context('userenv','session_user');
-grant insert,update on v_HoSoDichVu to BacSiDieuTri;
+where NHANVIEN.VAITRO = 'bac si' and NHANVIEN.TENNV || NHANVIEN.MANV = USER;
+grant select,insert,update on v_HoSoDichVu to BacSiDieuTri;
 
 --cap quyen cho role BoPhanBanThuoc
 grant select on THUOC to BoPhanBanThuoc;
@@ -88,3 +88,19 @@ grant select on CTDONTHUOC to BoPhanBanThuoc;
 grant select on THANGNAM to BoPhanKeToan;
 grant select on NHANVIEN to BoPhanKeToan;
 grant select on CTTRUCCONG to BoPhanKeToan;
+
+--view hien thi thong tin ca nhan cua nguoi dung
+create or replace view v_personalInfor as
+select nhanvien.manv,nhanvien.tennv,nhanvien.madvi,nhanvien.luong,nhanvien.vaitro,donvi.tendvi
+from NHANVIEN join DONVI on NHANVIEN.MADVI = DONVI.MADVI
+where NHANVIEN.TENNV||NHANVIEN.MANV = USER;
+
+--cap quyen select tren view toi tat ca nguoi dung
+grant select on v_personalInfor to QuanLyTaiNguyenVaNhanSu;
+grant select on v_personalInfor to QuanLyTaiVu;
+grant select on v_personalInfor to QuanLyChuyenMon;
+grant select on v_personalInfor to BoPhanTiepTan;
+grant select on v_personalInfor to BoPhanTaiVu;
+grant select on v_personalInfor to BacSiDieuTri;
+grant select on v_personalInfor to BoPhanBanThuoc;
+grant select on v_personalInfor to BoPhanKeToan;

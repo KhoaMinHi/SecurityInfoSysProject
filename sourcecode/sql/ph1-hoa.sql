@@ -1,172 +1,177 @@
---in ra cac user co trong he thong
-create or replace procedure showAllUser
+--in ra cac user,role,table,view co trong he thong
+create or replace procedure showAllUserRoleTableView
 is
     stmt varchar(1000);
 begin
-    stmt := 'select username from dba_users';
-    execute immediate(stmt);
+    dbms_output.put_line('-----------USER TRONG HE THONG----------');
+    for i in (select username from dba_users)
+    loop
+        dbms_output.put_line(i.username);
+    end loop;
+    dbms_output.put_line('-----------------------------------------');
+    dbms_output.put_line('-----------ROLE TRONG HE THONG----------');
+    for i in (select role from dba_roles)
+    loop
+        dbms_output.put_line(i.role);
+    end loop;
+    dbms_output.put_line('------------------------------------------');
+    dbms_output.put_line('-----------TABLE TRONG HE THONG----------');
+    for i in (select table_name from all_tables)
+    loop
+        dbms_output.put_line(i.table_name);
+    end loop;
+    dbms_output.put_line('-----------------------------------------');
+    dbms_output.put_line('-----------VIEW TRONG HE THONG----------');
+    for i in (select view_name from all_views)
+    loop
+        dbms_output.put_line(i.view_name);
+    end loop;
 end;
+exec showAllUserRoleTableView;
 
-begin
-showAllUser;
-end;
 --in ra quyen cua user hoac role tren doi tuong du lieu
---granteename: ten user hoac role
---object : ten doi tuong du lieu 
+--nameRoleOrUser: ten cua user hoac role
+--obj : ten doi tuong du lieu
+--RoleOrUser: la role hay user
 create or replace procedure showPrivilegeOfUserOrRole
-    (granteename varchar2,obj varchar2)
+    (obj varchar2,nameRoleOrUser varchar2,RoleOrUser varchar2)
 is
-    grantee_name varchar2(500) := granteename;
-    v_obj varchar2(500) := obj;
-    stmt varchar2(1000);
 begin
-    stmt := 'select * from ' || v_obj || ' where granteename = ' || grantee_name;
-    execute immediate(stmt);
-end;
-
-execute showPrivilegeOfUserOrRole('SYSTEM', 'dba_tab_privs');
-
---create or delete or update on user or role
---objectname: ten doi tuong 
---pass: mat khau doi tuong
---CDU; ten thao tac (create,delete,update)
---obt: doi tuong thao tac (role,user)
-create or replace procedure CDUUserOrRole(CDU varchar2, obj varchar2, objectname varchar2,pass varchar2 := null)
-is
-    object_name varchar2(2000) := objectname;
-    pwd varchar2(2000) := pass;
-    c_d_u varchar2(2000) := CDU;
-    v_obj varchar2(2000) := obj;
-    stmt varchar2(2000);
-begin
-    if v_obj != 'user' or v_obj != 'role'
-    then 
-        dbms_output.put_line('object must be role or user');
-        rollback;
-    end if;
-    if c_d_u = 'create'
+    if(RoleOrUser = 'USER')
     then
-        if v_obj = 'role' then
-            stmt := 'create ' || v_obj || ' ' || object_name;
-        else
-            stmt := 'create ' || v_obj || ' ' || object_name || ' identified by ' || pwd ;
+        if(obj = 'dba_tab_privs')
+        then
+            dbms_output.put_line('grantee   | owner    | table_name     |grantor    |privilege      |grantable      |hierarchy');
+            for i in (select * from dba_tab_privs where grantee = nameRoleOrUser)
+            loop
+                dbms_output.put_line(i.grantee||'  |  '||i.Owner||'  |  '||i.table_name||'  |  '||i.grantor||'  |  '||i.privilege||'  |  '||i.grantable||'  |  '||i.hierarchy);
+            end loop;
+        elsif(obj = 'dba_sys_privs')
+        then
+            dbms_output.put_line('grantee   |privilege      |admin_option');
+            for i in (select * from dba_sys_privs where grantee = nameRoleOrUser)
+            loop
+                dbms_output.put_line(i.grantee||'  |  '||i.privilege||'  |  '||i.admin_option);
+            end loop;
+        elsif(obj = 'dba_col_privs')
+        then
+            dbms_output.put_line('grantee   | owner    | table_name     |column_name    |grantor    |privilege');
+            for i in (select * from dba_col_privs where grantee = nameRoleOrUser)
+            loop
+                dbms_output.put_line(i.grantee||'  |  '||i.Owner||'  |  '||i.table_name||'  |  '||i.column_name||'  |   '||i.grantor||'  |  '||i.privilege);
+            end loop;
         end if;
-    elsif c_d_u = 'delete'
-    then 
-        stmt := 'drop ' || v_obj || ' ' || object_name;
-    elsif c_d_u = 'update'
-    then 
-        stmt := 'alter ' || v_obj || ' ' || object_name || ' identified by ' || pwd;
     else
-        dbms_output.put_line('CDU must be create or delete or update');
-        rollback;
+        if(obj = 'role_tab_privs')
+        then
+            dbms_output.put_line('role   | owner    | table_name     |column_name    |privilege      |grantable');
+            for i in (select * from role_tab_privs where role = nameRoleOrUser)
+            loop
+                dbms_output.put_line(i.role||'  |  '||i.Owner||'  |  '||i.table_name||'  |  '||i.column_name||'  |  '||i.privilege||'  |  '||i.grantable);
+            end loop;
+        elsif(obj = 'role_role_privs')
+        then
+            dbms_output.put_line('role   |granted_role      |admin_option');
+            for i in (select * from role_role_privs where role = nameRoleOrUser)
+            loop
+                dbms_output.put_line(i.role||'  |  '||i.granted_role||'  |  '||i.admin_option);
+            end loop;
+        end if;
     end if;
-    execute immediate(stmt);
 end;
+create user DEMO identified by demo;
+grant update(EMAIL,HOTEN) on NHANVIEN to DEMO;
+grant select on NHANVIEN to DEMO;
+exec showPrivilegeOfUserOrRole('dba_sys_privs','SYS','USER');
+exec showPrivilegeOfUserOrRole('dba_tab_privs','DEMO','USER');
+exec showPrivilegeOfUserOrRole('dba_col_privs','DEMO','USER');
+exec showPrivilegeOfUserOrRole('role_tab_privs','DBA','ROLE');
 
-exec cduuserorrole('create', 'user', 'a1a1', 'a1a1');
-select * from dba_roles;
-SELECT * FROM User_Source-- WHERE Name ='cduuserorrole' ORDER BY Type, Line;
-select * from dba_procedures where object_name = 'CDUUSERORROLE';
-alter procedure sys.CDUUSERORROLE recompile;
-show con_name;
-select * from dba_users;
+
 --thu hoi quyen tu user or role
 --objname: ten doi tuong can thu hoi
 --priv: quyen can thu hoi
 --obj: doi tuong duoc thu hoi quyen (co the co hoac khong)
-create or replace procedure revokePriv(objectname varchar2, priv varchar2,obj varchar2 := null)
+create or replace procedure revokePriv(objectname varchar2, priv varchar2,obj varchar2)
 is
-    object_name varchar2(1000) := objectname;
-    v_priv varchar2(1000) := priv; 
-    v_obj varchar2(1000) := obj;
     stmt varchar2(2000);
 begin
-    if v_obj is not null
+    if obj is not null
     then
-        stmt := 'revoke ' || v_priv || ' on ' || obj || ' from ' || object_name;
+        stmt := 'revoke ' || priv || ' on ' || obj || ' from ' || objectname;
     else
-        stmt := 'revoke ' || v_priv || ' from ' || object_name;
+        stmt := 'revoke ' || priv || ' from ' || objectname;
     end if;
     execute immediate(stmt);
 end;
 
-REVOKE UPDATE (c1,c2) ON TABLE s.v FROM PUBLIC
-exec revokepriv('KHA', 'CREATE SESSION');
---quyền, đối tượng, cho ai
+grant create session to demo;
+
+--thu hoi quyen update ten table demo tu user demo
+select * from dba_tab_privs where grantee = 'DEMO';
+select * from dba_sys_privs where grantee = 'DEMO';
+select * from dba_col_privs where grantee = 'DEMO';
+
+exec revokepriv('demo', 'select','NHANVIEN');
+exec revokepriv('demo', 'create session',null);
+exec revokepriv('demo', 'update','NHANVIEN');
+
 --cap quyen cho user or role
 --objname: ten doi tuong can cap
 --priv: quyen can can
 --obj: doi tuong duoc cap quyen(co the co hoac khong)
 --WRO: with grant option
-create or replace procedure grantPriv(priv varchar2, cot varchar2 := null, obj varchar2 := null, objectname varchar2, WRO char := '0')
+create or replace procedure grantPriv(priv varchar2, col varchar2, obj varchar2, objectname varchar2, WRO char)
 is
-    object_name varchar2(500) := objectname;
-    v_priv varchar2(500) := priv; 
-    v_obj varchar2(500) := obj;
-    v_wro char(1) := WRO;
-    v_col varchar2(500) := cot;
     stmt varchar2(10000);
 begin
-    if (v_priv = 'select' or v_priv = 'update') and v_col != null
+    if (priv = 'select' or priv = 'update') and col is not null
     then 
-        if v_obj is not null
+        if wro = '1'
         then
-            if v_wro = '1'
-            then
-                stmt := 'grant ' || v_priv || '(' || v_col || ') on ' || obj || ' to ' || object_name || ' with grant option';
-            else
-                stmt := 'grant ' || v_priv || '(' || v_col || ') on ' || obj || ' to ' || object_name;
-            end if;
+            stmt := 'grant ' || priv || '(' || col || ') on ' || obj || ' to ' || objectname || ' with grant option';
         else
-            if v_wro = '1'
-            then
-                stmt := 'grant ' || v_priv || '(' || v_col || ') to ' || object_name || ' with grant option';
-            else
-                stmt := 'grant ' || v_priv || '(' || v_col || ') to ' || object_name;
-            end if;
+            stmt := 'grant ' || priv || '(' || col || ') on ' || obj || ' to ' || objectname;
         end if;
     else
-        if v_obj is not null
+        if obj is not null
         then
-            if v_wro = '1'
+            if wro = '1'
             then
-                stmt := 'grant ' || v_priv || ' on ' || obj || ' to ' || object_name || ' with grant option';
+                stmt := 'grant ' || priv || ' on ' || obj || ' to ' || objectname || ' with grant option';
             else
-                stmt := 'grant ' || v_priv || ' on ' || obj || ' to ' || object_name;
+                stmt := 'grant ' || priv || ' on ' || obj || ' to ' || objectname;
             end if;
         else
-            if v_wro = '1'
+            if wro = '1'
             then
-                stmt := 'grant ' || v_priv || ' to ' || object_name || ' with grant option';
+                stmt := 'grant ' || priv || ' to ' || objectname || ' with grant option';
             else
-                stmt := 'grant ' || v_priv || ' to ' || object_name;
+                stmt := 'grant ' || priv || ' to ' || objectname;
             end if;
         end if;
     end if;
     execute immediate(stmt);
 end;
 
-execute grantPriv('select', 'id', 'c##bv_schema.test', 'c##hoang'); 
+select * from dba_tab_privs where grantee = 'DEMO';
+select * from dba_sys_privs where grantee = 'DEMO';
+select * from dba_col_privs where grantee = 'DEMO';
 
-select * from dba_sys_privs;
-select * from dba_users;
-select u.username as TENNGUOIDUNG, U.user_id as ID, u.account_status as trangthaitaikhoan,  p.privilege as quyen, p.admin_option as chiase, u.lock_date as ngaybikhoa, u.expiry_date as ngayhethang, u.created as ngaytao, u.last_login as ngaydangnhapgannhat, u.password_change_date as ngaydoimatkhau from dba_sys_privs p join dba_users u on p.grantee = u.username;
+execute grantPriv('update', 'HOTEN', 'NHANVIEN', 'DEMO','0'); 
+execute grantPriv('select', null, 'NHANVIEN', 'DEMO','0'); 
+execute grantPriv('create session', null, null, 'DEMO','0'); 
 
-select * from dba_objects;
-
---chinh sua quyen cua user or role
---objectname : ten doi tuong can sua quyen
---obj: loai doi tuong can sua quyen (user or role)
---priv: quyen muon chinh sua
-create or replace procedure alterUserOrRole(objectname varchar2,obj varchar2,priv varchar2)
+create or replace procedure addUserOrRole(UserOrRole varchar2,Name varchar2,clause varchar2)
 is
-    object_name varchar2(1000) := objectname;
-    v_obj varchar2(1000) := obj;
-    v_priv varchar2(1000) := priv;
-    stmt varchar2(10000);
+    stmt varchar2(2000);
 begin
-    stmt := 'alter ' || v_obj || ' ' || object_name || ' ' || v_priv;
+    stmt := 'create ' || UserOrRole || ' ' || Name || ' ' || clause;
     execute immediate(stmt);
 end;
-
+drop user test11;
+drop role test12;
+select * from dba_users where username = 'TEST11';
+select * from dba_roles where role = 'TEST12';
+exec addUserOrRole('User','test11','identified by test11');
+exec addUserOrRole('Role','test12',null);
